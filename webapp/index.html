@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+<body>
+<header>
+	<nav>
+		<ul>
+			<li class="glyphicon glyphicon-chevron-left vf" style="display: none" data-page='back'></li>
+			<li class="glyphicon glyphicon-refresh vf" data-page='refresh'></li>
+			<li>首页</li>
+			<li class="glyphicon glyphicon-plus vf" data-page='bigClass'></li>
+		</ul>
+	</nav>
+</header>
+<div class="m_content">
+	<section class="main">
+		main
+	</section>
+	<section class="content">
+		content
+	</section>
+	<section class="bigClass">
+		bigClass
+	</section>
+	<section class="minClass">
+		<div class="mc_left">
+			<ul>
+				<li class="active">我是菜单</li>
+				<li>我是菜单</li>
+				<li>我是菜单</li>
+				<li>我是菜单</li>
+				<li>我是菜单</li>
+				<li>我是菜单</li>
+				<li>我是菜单1</li>
+				<li>我是菜单</li>
+				<li>我是菜单</li>
+				<li>我是菜单</li>
+				<li>我是菜单</li>
+			</ul>
+		</div>
+		<div class="mc_right">
+		right
+		</div>
+	</section>
+	<section class="userInfo">
+		userInfo
+	</section>
+	<section class="oftenUse">
+		oftenUse
+	</section>
+</div>
+<footer>
+	<nav>
+		<ul>
+			<li class="vf" data-page='main'><i class="glyphicon glyphicon-home"></i> 首页</li>
+			<li class="vf" data-page='oftenUse'><i class="glyphicon glyphicon-list-alt"></i> 常用</li>
+			<li class="vf" data-page='minClass'><i class="glyphicon glyphicon-align-justify"></i> 分类</li>
+			<li class="vf" data-page='userInfo'><i class="glyphicon glyphicon-user"></i> 用户</li>
+		</ul>
+	</nav>
+</footer>
+</body>
+</html>
+<script src="js/jquery-2.1.0.min.js"></script>
+<script src="js/common.js"></script>
+<script type="text/javascript">
+var para={
+	upPage:'main',//上一页
+	curPage:'main',//当前页面
+	switchFn:function(page){
+		var p=$(page).data('page');
+		switch(p) {
+			case 'back' :
+				para.backFn();
+				break;
+			default:
+				if(p!=para.curPage){
+					para.upPage=para.curPage;
+					para.curPage=p;
+					$('.m_content section').hide();
+					$('.m_content .'+p).show();
+				}
+				break;
+		}
+	},//切换setction
+	default:function(){
+		$('.m_content section').hide();
+		$('.'+para.curPage).show();
+	},//设置默认
+	backFn:function(){
+
+	},//返回
+	refresh:function(){
+
+	}//刷新页
+
+}
+var commonFn={
+	init:function(){
+		para.default();
+		$('.vf').click(function(){
+			para.switchFn(this);
+		});
+	}
+}
+$(function(){
+	commonFn.init();
+})
+</script>
