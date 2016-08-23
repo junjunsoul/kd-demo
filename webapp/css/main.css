@@ -31,7 +31,7 @@ header ul,footer ul{
 	padding: 0;
 	margin: 0;
 }
-header ul li:hover,footer ul li:hover{
+header ul li.active,footer ul li.active{
 	color: #549a29;
 }
 header ul li{
@@ -122,6 +122,7 @@ footer ul li{
 	-webkit-flex:3 3 300px;
 	-moz-flex:3 3 300px;	
 	flex:3 3 300px;
+	-webkit-overflow-scrolling: touch;
 }
 /*功能*/
 .menuitem>.mc_right>ul>li{
@@ -152,4 +153,31 @@ footer ul li{
 	line-height: 40px;
 	text-align: center;
 	color: #6f6666;
+}
+.menuitem>.mc_right>ul>li.active{
+	border-left: 5px solid #549a29;
+	background-color: #fff;
+}
+.menuitem>.mc_right>ul>li.active *{
+	color: #549a29 !important;
+}
+
+
+.pt-page-moveFromLeft {
+    -webkit-animation: moveFromLeft .6s ease both;
+    animation: moveFromLeft .6s ease both;
+}
+
+@-webkit-keyframes moveFromLeft {
+    from {
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+    }
+}
+
+@keyframes moveFromLeft {
+    from {
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+    }
 }

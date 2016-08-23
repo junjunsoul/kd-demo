@@ -14,7 +14,7 @@
 			<li class="glyphicon glyphicon-menu-left vf" data-page='back'></li>
 			<li class="glyphicon glyphicon-refresh vf" data-page='refresh'></li>
 			<li>首页</li>
-			<li class="glyphicon glyphicon-option-vertical vf" data-page='bigClass'></li>
+			<li class="glyphicon glyphicon-list vf" data-page='bigClass'></li>
 		</ul>
 	</nav>
 </header>
@@ -80,11 +80,11 @@
 		</div>
 		<div class="mc_right">
 			<ul>
-				<li><span>1</span><span>功能菜单1</span>
+				<li ><span>1</span><span>功能菜单1</span>
 				<i class="glyphicon glyphicon-menu-right"></i></li>
 				<li><span>2</span><span>功能菜单1</span>
 				<i class="glyphicon glyphicon-menu-right"></i></li>
-				<li><span>3</span><span>功能菜单1</span>
+				<li class="active"><span>3</span><span>功能菜单1</span>
 				<i class="glyphicon glyphicon-menu-right"></i></li>
 				<li><span>4</span><span>功能菜单1</span>
 				<i class="glyphicon glyphicon-menu-right"></i></li>
@@ -109,9 +109,9 @@
 <footer>
 	<nav>
 		<ul>
-			<li class="vf" data-page='main'><i class="glyphicon glyphicon-home"></i> 首页</li>
+			<li class="vf active" data-page='main'><i class="glyphicon glyphicon-home"></i> 首页</li>
 			<li class="vf" data-page='oftenUse'><i class="glyphicon glyphicon-list-alt"></i> 常用</li>
-			<li class="vf" data-page='minClass'><i class="glyphicon glyphicon-list"></i> 分类</li>
+			<li class="vf" data-page='minClass'><i class="glyphicon glyphicon-menu-hamburger"></i> 分类</li>
 			<li class="vf" data-page='userInfo'><i class="glyphicon glyphicon-user"></i> 我的</li>
 		</ul>
 	</nav>
@@ -122,10 +122,9 @@
 <script src="js/common.js"></script>
 <script type="text/javascript">
 var para={
-	upPage:'main',//上一页
+	upPage:'',//上一页
 	curPage:'main',//当前页面
-	switchFn:function(page){
-		var p=$(page).data('page');
+	switchFn:function(p){
 		switch(p) {
 			case 'back' :
 				para.backFn();
@@ -136,9 +135,13 @@ var para={
 					para.curPage=p;
 					$('.m_content section').hide();
 					$('.m_content .'+p).show();
-				}
+					para.animation();
+				}else return;
 				break;
 		}
+		$('.vf').removeClass('active');
+		$('.vf[data-page='+p+']').addClass('active');
+
 	},//切换setction
 	default:function(){
 		$('.m_content section').hide();
@@ -149,14 +152,20 @@ var para={
 	},//返回
 	refresh:function(){
 
-	}//刷新页
+	},//刷新页
+	animation:function(){
+        $('.'+para.curPage).addClass('pt-page-moveFromLeft');
+		setTimeout(function(){
+        	$('.'+para.curPage).removeClass('pt-page-moveFromLeft');
+        },600);
+	}//动画
 
 }
 var commonFn={
 	init:function(){
 		para.default();
 		$('.vf').click(function(){
-			para.switchFn(this);
+			para.switchFn($(this).data('page'));
 		});
 	}
 }
