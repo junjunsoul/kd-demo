@@ -14,9 +14,7 @@
 			<li class="vf back" data-page='back'>
 				<i style="display: none" class="glyphicon glyphicon-menu-left"></i>
 			</li>
-	
 			<li class="c_title">首页</li>
-
 			<li class="glyphicon glyphicon-refresh vf refresh" data-page='refresh'></li>			
 			<li class="glyphicon glyphicon-list vf bigClass" data-page='bigClass'></li>
 		</ul>
@@ -189,8 +187,8 @@ var para={
 	upPage:'',//上一页
 	curPage:'main',//当前页面
 	menumData:{bc_1:'',bc_2:'',mc_1:'',mc_2:''},//菜单选中数据
+	contentTitle:'',
 	switchFn:function(p,title){
-		console.log(title);
 		switch(p) {
 			case 'back' :
 				para.backFn();
@@ -201,21 +199,19 @@ var para={
 			case 'refresh':
 				para.refresh();
 				break;
+			case 'bigClass':
+				if(para.upPage=='content'){
+					para.switchcommFn('content');
+					$('.c_title').html(para.contentTitle);
+				}else{
+					para.switchcommFn(p);
+					$('.c_title').html(title);
+				}
+				break;	
 			default:
 				if(p!=para.curPage){
-					para.upPage=para.curPage;
-					para.curPage=p;
-					$('.m_content section').hide();
-					$('.m_content .'+p).show();
-					para.animation();
-					if(p=='content'){
-						$('.vf[data-page=back] i').show();
-					}else{
-						$('.vf[data-page=back] i').hide();
-					}
+					para.switchcommFn(p);
 					$('.c_title').html(title);
-					$('.vf').removeClass('active');
-					$('.vf[data-page='+p+']').addClass('active');
 				}else{
 					if(p=='main')return;
 					para.upPage='';
@@ -230,6 +226,22 @@ var para={
 				break;
 		}
 	},//切换setction
+	switchcommFn:function(p){
+		para.upPage='';
+		if(p=='bigClass')
+			para.upPage=para.curPage;
+		para.curPage=p;
+		$('.m_content section').hide();
+		$('.m_content .'+p).show();
+		para.animation();
+		if(p=='content'){
+			$('.vf[data-page=back] i').show();
+		}else{
+			$('.vf[data-page=back] i').hide();
+		}
+		$('.vf').removeClass('active');
+		$('.vf[data-page='+p+']').addClass('active');		
+	},//切换公共方法
 	default:function(){
 		$('.m_content section').hide();
 		$('.'+para.curPage).show();
@@ -251,7 +263,7 @@ var para={
 	skipcontent:function(page,p){
 		$(".content").html('');
 		$(".content").load('page/'+page+'.html',p,function(){
-	      	$.fn.initPage();
+	      	
 	    });
 	}//跳转报表
 }
@@ -272,8 +284,13 @@ var commonFn={
 		$('.bigClass>.mc_right li').click(function(){
 			$(this).addClass('active').siblings('li').removeClass('active');
 			para.menumData.bc_2=$(this).data('key');
-			para.switchFn('minClass',$('.minClass').data('title'));
-			para.skipcontent($(this).data('key'),{});
+			if(para.upPage=='content'){
+				para.switchcommFn('content');
+				$('.c_title').html(para.contentTitle);
+			}else{
+				para.switchFn('minClass',$('.minClass').data('title'));
+				para.skipcontent($(this).data('key'),{});
+			}
 		});
 
 		$('.minClass>.mc_left li').click(function(){
@@ -285,12 +302,14 @@ var commonFn={
 			$(this).addClass('active').siblings('li').removeClass('active');
 			para.menumData.mc_2=$(this).data('key');
 			para.switchFn('content',$(this).find('span:nth-of-type(2)').html());
+			para.contentTitle=$(this).find('span:nth-of-type(2)').html();
 			para.skipcontent($(this).data('key'),{});
 		});
 		$('.buttom_content>.menulist li').click(function(){
 			$(this).addClass('active').siblings('li').removeClass('active');
 			para.menumData.mc_2=$(this).data('key');
 			para.switchFn('content',$(this).find('span:nth-of-type(2)').html());
+			para.contentTitle=$(this).find('span:nth-of-type(2)').html();
 			para.skipcontent($(this).data('key'),{});
 		});		
 	}
@@ -299,5 +318,4 @@ var commonFn={
 $(function(){
 	commonFn.init();
 });
-
 </script>
