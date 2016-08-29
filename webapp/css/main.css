@@ -9,7 +9,7 @@ html,body{
 	box-sizing: border-box;
 }
 .m_content{
-	height:calc(100% - 88px);
+	height:calc(100% - 90px);
 }
 /*顶部导航*/
 header{
@@ -18,6 +18,7 @@ header{
 	width: 100%;
 	height: 45px;
 	border-bottom: 1px solid #dcd8d8;
+	z-index:100;
 }
 header ul,footer ul{
 	background: #fff;
@@ -63,11 +64,12 @@ header ul li.bigClass{
 
 /*内容区域*/
 section{
-	margin: 44px 0;
+	margin: 45px 0;
 	height:100%;
 	overflow-x:hidden;
 	overflow-y:auto;
 	-webkit-overflow-scrolling: touch;
+	position: relative;
 }
 
 /*底部导航*/
@@ -231,6 +233,7 @@ footer ul li{
 	margin-top: 5px;
 	border: 1px solid #dcd8d8;
 }
+
 .menulist>li>span:first-of-type{
 	flex:1 0 25px;
 	-webkit-flex:1 0 25px;
@@ -270,14 +273,13 @@ footer ul li{
 	margin:0;
 	padding:0;
 }
-.char_content li{
-	border-top: 1px solid #dcd8d8;
-	border-bottom: 1px solid #dcd8d8;
-	margin:10px 0;
+.char_content>li:not(.filtrate){
+	border-top: 1px solid #dedada;
 	background-color: #fff;
 	padding:0 5px 15px 5px; 
 }
-.char_content li h5{
+
+.char_content>li>h5{
 	font-size: 1rem;
 	text-align: left;
 	margin: 10px 0;
@@ -308,4 +310,128 @@ footer ul li{
         transform: translateX(100%);
     }
 }
-.filtrate{}
+.char_content{
+	margin-top:37px; 
+}
+.char_content>.filtrate{
+	position: fixed;
+	top: 45px;
+	z-index: 100;
+	width: 100%;
+	padding: 0 5px;
+	height: 37px;
+	background: #f9f9f9;
+	
+}
+.char_content>.filtrate ul{
+	clear: both;
+	list-style: none;
+	margin: 1px 0 5px;
+	padding: 0;
+	position: relative;
+}
+.char_content>.filtrate ul>li{
+	float: left;
+	width: 25%;
+	padding: 5px;
+	text-align: center;
+	cursor: pointer;
+}
+.char_content>.filtrate>ul>li>span{
+	display: inline-block;
+	border-radius:4px;
+	padding:5px;
+	width:100%;
+}
+.char_content>.filtrate ul>li>span:not(.sx){
+	background: #dedddd;
+}
+.char_content>.filtrate ul>li.active>span:not(.sx){
+	height: 31px;
+	border-radius: 4px 4px 0 0;
+	background: #fff;
+	border: 1px solid #f1e6e6;
+	border-bottom:0;
+	color: #549a29;
+}
+.char_content>.filtrate ul>li.active>.info{
+	display: block !important;
+}
+.filtrate>ul>li .info:not(.bg){
+	position: absolute;
+	width:calc(100% + 10px);
+	left:-5px;
+	background:#fff;
+	z-index: 100;
+	display: none;
+}
+
+.filtrate>ul>li .info>ul{
+	list-style: none;
+	padding: 0;
+	overflow: hidden;
+	clear: both;
+}
+.filtrate>ul>li .info>ul>li{
+	float:left;
+	width: 50%;
+	text-align: left;
+	padding: 15px 5px 5px;
+}
+.filtrate>ul>li .info>.btn{
+	overflow: hidden;
+	clear: both;
+}
+.filtrate>ul>li .info>.btn>span{
+	display: block;
+	float: left;
+	width: 50%;
+	text-align: center;
+	line-height: 35px;
+	font-weight:500;
+	font-size:1rem;
+}
+.filtrate>ul>li .info>.btn>span:first-child{
+	border-top: 1px solid #f1e6e6;
+}
+.filtrate>ul>li .info>.btn>span:last-child{
+	background: green;
+	border-top: 1px solid green;
+	color: #fff;
+}
+
+.filtrate.shadow{
+	height: calc(100% - 38px);
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	z-index: 99;
+	background: black;
+	opacity: 0.6;
+	display: none;
+}
+.filtrate>ul>li .info.bg{
+	width:80%;
+	height:calc(100% - 82px);
+	position:fixed;
+	right:0;
+	bottom:0;
+	background:#fff;
+	z-index:100;
+	display: none;
+}
+.filtrate>ul>li .info.bg>ul{
+	height: calc(100% - 43px);
+	overflow-y:auto;
+	overflow-x:hidden;  
+}
+.filtrate>ul>li .info.bg>ul>li{
+	width: 100%;
+}
+.filtrate>ul>li .info.bg>.btn{
+	width: 100%;
+	z-index:100;
+}
+.filtrate>ul>li .info.bg>.btn>span{
+	line-height:43px;
+}
