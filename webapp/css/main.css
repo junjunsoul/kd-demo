@@ -13,8 +13,6 @@ html,body{
 }
 /*顶部导航*/
 header{
-	position: fixed;
-	top: 0;
 	width: 100%;
 	height: 45px;
 	border-bottom: 1px solid #dcd8d8;
@@ -64,7 +62,6 @@ header ul li.bigClass{
 
 /*内容区域*/
 section{
-	margin: 45px 0;
 	height:100%;
 	overflow-x:hidden;
 	overflow-y:auto;
@@ -74,8 +71,6 @@ section{
 
 /*底部导航*/
 footer{
-	position: fixed;
-	bottom: 0;
 	width: 100%;
 	height: 44px;
 	border-top: 1px solid #dcd8d8;
@@ -364,6 +359,7 @@ footer ul li{
 	background:#fff;
 	z-index: 100;
 	display: none;
+	transition: 1s;
 }
 
 .filtrate>ul>li .info>ul{
@@ -401,7 +397,7 @@ footer ul li{
 }
 
 .filtrate.shadow{
-	height: calc(100% - 38px);
+	height: calc(100% - 45px);
 	width: 100%;
 	position: fixed;
 	bottom: 0;

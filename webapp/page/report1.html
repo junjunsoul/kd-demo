@@ -88,7 +88,7 @@
 		</h5>
 		<p class="helpinfo" style=" display: none">我是帮助我会隐藏</p>
 		<div class="content">
-			<div id="c2" style=""></div>
+			<div id="c2" style="height: 300px;"></div>
 		</div>
 	</li>
 	<li>
@@ -203,11 +203,43 @@ $(function(){
 			        }
 			    ]
 			}
+		},
+		c2:{
+			obj:echarts.init($('#c2')[0],'walden'),
+			option:{
+			    tooltip : {
+			        trigger: 'axis'
+			    },
+			    legend: {
+			    	show:false,
+			        data:['新增设备']
+			    },
+			    calculable : true,
+			    xAxis : [
+			        {
+			            type : 'value',
+			            boundaryGap : [0, 0.01]
+			        }
+			    ],
+			    yAxis : [
+			        {
+			        	name :'注册数',
+			            type : 'category',
+			            data : ['6个','5个','4个','3个','2个','1个','0个']
+			        }
+			    ],
+			    series : [
+			        {
+			            name:'新增设备',
+			            type:'bar',
+			            data:[182, 23, 298, 104, 131, 630,0]
+			        }
+			    ]
+			}
 		}
 	}
 	$.each(chart,function(i,j){
 		j.obj.setOption(j.option);
 	});
-
 })
 </script>
