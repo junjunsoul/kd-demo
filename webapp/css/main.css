@@ -66,6 +66,7 @@ section{
 	overflow-x:hidden;
 	overflow-y:auto;
 	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
 	position: relative;
 }
 
@@ -258,29 +259,28 @@ footer ul li{
 }
 
 
-.pt-page-moveFromLeft {
-    -webkit-animation: moveFromLeft .5s ease both;
-    animation: moveFromLeft .5s ease both;
-}
 /*报表样式*/
 .char_content{
 	list-style: none;
 	margin:0;
 	padding:0;
 }
-.char_content>li:not(.filtrate){
-	border-top: 1px solid #dedada;
+.char_content>li{
 	background-color: #fff;
 	padding:0 5px 15px 5px; 
+}
+.char_content>li:not(:last-of-type){
+	border-bottom: 1px solid #dedada;
 }
 
 .char_content>li>h5{
 	font-size: 1rem;
 	text-align: left;
-	margin: 10px 0;
+	padding: 10px 0;
 	font-weight:500;
 	color: #6f6666;
 	text-indent: 5px;
+	margin:0;
 }
 .char_content li h5>i{
 	float: right;
@@ -291,6 +291,11 @@ footer ul li{
 	font-size: .85rem;
 	color: #6f6666;
 	border-top: 1px solid #6f6666;
+}
+
+.pt-page-moveFromLeft {
+    -webkit-animation: moveFromLeft .3s ease both;
+    animation: moveFromLeft .3s ease both;
 }
 @-webkit-keyframes moveFromLeft {
     from {
@@ -316,7 +321,6 @@ footer ul li{
 	padding: 0 5px;
 	height: 37px;
 	background: #f9f9f9;
-	
 }
 .char_content>.filtrate ul{
 	clear: both;
@@ -330,7 +334,6 @@ footer ul li{
 	width: 25%;
 	padding: 5px;
 	text-align: center;
-	cursor: pointer;
 }
 .char_content>.filtrate>ul>li>span{
 	display: inline-block;
@@ -342,11 +345,13 @@ footer ul li{
 	background: #dedddd;
 }
 .char_content>.filtrate ul>li.active>span:not(.sx){
-	height: 31px;
+	height: 32px;
 	border-radius: 4px 4px 0 0;
 	background: #fff;
 	border: 1px solid #f1e6e6;
 	border-bottom:0;
+}
+.char_content>.filtrate ul>li.active>span{
 	color: #549a29;
 }
 .char_content>.filtrate ul>li.active>.info{
@@ -397,7 +402,7 @@ footer ul li{
 }
 
 .filtrate.shadow{
-	height: calc(100% - 45px);
+	height: calc(100% - 83px);
 	width: 100%;
 	position: fixed;
 	bottom: 0;
@@ -408,7 +413,7 @@ footer ul li{
 }
 .filtrate>ul>li .info.bg{
 	width:80%;
-	height:calc(100% - 82px);
+	height:calc(100% - 83px);
 	position:fixed;
 	right:0;
 	bottom:0;
