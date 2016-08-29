@@ -320,7 +320,7 @@ footer ul li{
 	width: 100%;
 	padding: 0 5px;
 	height: 37px;
-	background: #f9f9f9;
+	background: #fff;
 }
 .char_content>.filtrate ul{
 	clear: both;
@@ -365,6 +365,7 @@ footer ul li{
 	z-index: 100;
 	display: none;
 	transition: 1s;
+	top: 36px;
 }
 
 .filtrate>ul>li .info>ul{
@@ -387,8 +388,9 @@ footer ul li{
 	display: block;
 	float: left;
 	width: 50%;
+	height: 40px;
 	text-align: center;
-	line-height: 35px;
+	line-height:40px;
 	font-weight:500;
 	font-size:1rem;
 }
@@ -402,7 +404,7 @@ footer ul li{
 }
 
 .filtrate.shadow{
-	height: calc(100% - 83px);
+	height: calc(100% - 82px);
 	width: 100%;
 	position: fixed;
 	bottom: 0;
@@ -413,16 +415,16 @@ footer ul li{
 }
 .filtrate>ul>li .info.bg{
 	width:80%;
-	height:calc(100% - 83px);
+	height:calc(100% - 82px);
 	position:fixed;
 	right:0;
-	bottom:0;
+	top: 82px;
 	background:#fff;
 	z-index:100;
 	display: none;
 }
 .filtrate>ul>li .info.bg>ul{
-	height: calc(100% - 43px);
+	height: calc(100% - 46px);
 	overflow-y:auto;
 	overflow-x:hidden;  
 }
@@ -432,7 +434,4 @@ footer ul li{
 .filtrate>ul>li .info.bg>.btn{
 	width: 100%;
 	z-index:100;
-}
-.filtrate>ul>li .info.bg>.btn>span{
-	line-height:43px;
 }
